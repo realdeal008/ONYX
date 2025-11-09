@@ -50,21 +50,21 @@ export default function ContactSection() {
               <div className="contact-icon">📧</div>
               <div className="contact-text">
                 <h4>Email</h4>
-                <p>hello@developer.com</p>
+                <p>adeshina6233@gmail.com</p>
               </div>
             </div>
             <div className="contact-item">
               <div className="contact-icon">📱</div>
               <div className="contact-text">
                 <h4>Phone</h4>
-                <p>+1 (555) 123-4567</p>
+                <p>+234 707-274-7849</p>
               </div>
             </div>
             <div className="contact-item">
               <div className="contact-icon">📍</div>
               <div className="contact-text">
                 <h4>Location</h4>
-                <p>San Francisco, CA</p>
+                <p>Lagos, NG</p>
               </div>
             </div>
           </div>
