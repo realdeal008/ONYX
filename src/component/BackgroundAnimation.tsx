@@ -9,9 +9,8 @@ import {
   Cylinder,
   Cone,
   Torus,
-  EffectComposer,
-  Bloom,
 } from "@react-three/drei";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { useRef } from "react";
 import * as THREE from "three";
 
@@ -149,9 +148,7 @@ function DynamicParticles() {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          count={1000}
-          array={positions.current}
-          itemSize={3}
+          args={[positions.current, 3]}
         />
       </bufferGeometry>
       <pointsMaterial color="#00FFFF" size={0.05} />
