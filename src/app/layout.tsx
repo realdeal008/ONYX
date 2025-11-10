@@ -28,8 +28,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
       >
-        <BackgroundAnimation />
-        {children}
+        <BackgroundAnimation>
+          {children}
+        </BackgroundAnimation>
       </body>
     </html>
   );

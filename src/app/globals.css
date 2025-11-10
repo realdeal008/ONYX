@@ -251,16 +251,16 @@
 }
 
 .navbar-scrolled {
-  background: var(--color-bg);
+  background: linear-gradient(135deg, #0F172A, #C0C0C0, #1E3A8A);
   border-bottom: 2px solid transparent;
-  box-shadow: 0 2px 12px rgba(181, 148, 71, 0.3);
+  box-shadow: 0 2px 12px rgba(30, 58, 138, 0.3);
   animation: metallic-shimmer 8s linear infinite;
   border-image-slice: 1;
   border-image-source: linear-gradient(
     120deg,
-    var(--color-gold-light),
-    #c0c0c0,
-    var(--color-gold-light)
+    #0F172A,
+    #C0C0C0,
+    #1E3A8A
   );
 }
 
@@ -793,7 +793,7 @@ body, html {
   color: var(--text-primary);
   min-height: 100vh;
   overflow: visible;
-  background: var(--bg-color); /* ensures smooth transition from divider */
+  /* background removed to allow background animation to show through */
   padding: 6rem 1.5rem; /* breathing space above/below */
 }
 
@@ -1284,7 +1284,7 @@ body, html {
   justify-content: center;
   align-items: center;
   padding: 4rem 2rem;
-  background: var(--bg-primary);
+  /* background removed to allow background animation to show through */
   min-height: 100vh;
   overflow: visible;
 }
@@ -1497,7 +1497,7 @@ body, html {
 
 .contact {
   padding: 6rem 2rem;
-  background: var(--bg-primary);
+  /* background removed to allow background animation to show through */
   min-height: 100vh;
   overflow: visible;
   display: flex;

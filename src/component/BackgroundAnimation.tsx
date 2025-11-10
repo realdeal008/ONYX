@@ -8,7 +8,7 @@ import {
   Box,
   Cylinder,
   Cone,
-  Torus,
+  Torus, Points, PointMaterial, OrbitControls,
 } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { useRef } from "react";
@@ -126,49 +126,54 @@ function AnimatedTorus() {
 
 function DynamicParticles() {
   const pointsRef = useRef<THREE.Points>(null!);
-  const positions = useRef<Float32Array>(new Float32Array(1000 * 3));
+  const positions = useRef<Float32Array>(new Float32Array(500 * 3));
 
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 500; i++) {
     positions.current[i * 3] = (Math.random() - 0.5) * 20;
     positions.current[i * 3 + 1] = (Math.random() - 0.5) * 20;
     positions.current[i * 3 + 2] = (Math.random() - 0.5) * 20;
   }
 
   useFrame((state) => {
-    pointsRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.1;
-    pointsRef.current.rotation.y = Math.cos(state.clock.elapsedTime * 0.3) * 0.1;
-    for (let i = 0; i < 1000; i++) {
-      positions.current[i * 3 + 1] += Math.sin(state.clock.elapsedTime + i) * 0.001;
+    if (pointsRef.current) {
+      pointsRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.1;
+      pointsRef.current.rotation.y = Math.cos(state.clock.elapsedTime * 0.3) * 0.1;
     }
-    pointsRef.current.geometry.attributes.position.needsUpdate = true;
   });
 
   return (
-    <points ref={pointsRef}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          args={[positions.current, 3]}
-        />
-      </bufferGeometry>
-      <pointsMaterial color="#00FFFF" size={0.05} />
-    </points>
+    <Points ref={pointsRef} positions={positions.current}>
+      <PointMaterial color="#00FFFF" size={0.05} />
+    </Points>
   );
 }
 
 // ---- Main 3D Scene ----
 
-export default function BackgroundAnimation() {
+export default function BackgroundAnimation({ children }: { children: React.ReactNode }) {
   return (
-    <Canvas
-      camera={{ position: [0, 0, 5], fov: 75 }}
+    <div
       style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: -1,
-        background: "linear-gradient(to bottom, #0F172A, #1E3A8A)",
+        position: "relative",
+        width: "100%",
+        height: "100%", 
+        background: "linear-gradient(to bottom, #1E3A8A,#C0C0C0, #D4AF37,#0F172A)",
       }}
     >
+      <Canvas
+        camera={{ position: [0, 0, 5], fov: 75 }}
+        gl={{ antialias: false, alpha: true }}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          zIndex: 0,
+          // Ensure canvas doesn't block pointer events for page content
+          pointerEvents: "none",
+          width: "100%",
+          height: "100%",
+        }}
+      >
       {/* Lighting */}
       <ambientLight intensity={0.3} />
       <pointLight position={[10, 10, 10]} intensity={0.5} color="#C0C0C0" />
@@ -181,6 +186,8 @@ export default function BackgroundAnimation() {
         color="#FFD700"
       />
 
+      <OrbitControls />
+
       {/* Elements */}
       <Stars radius={100} depth={50} count={5000} factor={4} fade speed={1} />
       <AnimatedSphere />
@@ -191,14 +198,27 @@ export default function BackgroundAnimation() {
       <DynamicParticles />
 
       {/* Subtle bloom effect for luxury glow */}
-      <EffectComposer>
+      <EffectComposer multisampling={0}>
         <Bloom
-          intensity={0.5}
-          kernelSize={3}
+          intensity={0.3}
+          kernelSize={1}
           luminanceThreshold={0.9}
           luminanceSmoothing={0.025}
         />
       </EffectComposer>
     </Canvas>
+
+    {/* Content */}
+    <div
+      style={{
+        position: "relative",
+        zIndex: 1,
+        width: "100%",
+        height: "auto",
+      }}
+    >
+      {children}
+    </div>
+  </div>
   );
 }
