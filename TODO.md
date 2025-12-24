@@ -1,5 +1,4 @@
-# TODO: Integrate Points, PointMaterial, and OrbitControls into BackgroundAnimation
+# TODO: Remove Hero Section and Update Component
 
-- [ ] Update DynamicParticles component to use <Points> and <PointMaterial> from @react-three/drei instead of native Three.js elements, maintaining existing animation behavior.
-- [ ] Add <OrbitControls /> inside the Canvas to enable interactive controls without altering the background's visual or animation functionality.
-- [ ] Verify the changes do not introduce errors and that the background animation remains unchanged.
+- [x] Remove HeroSection import and usage from src/app/page.tsx
+- [x] Update src/component/section/HeroSection.tsx with the new Matrix background code

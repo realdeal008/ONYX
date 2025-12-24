@@ -10,21 +10,23 @@ import ContactSection from "../component/section/ContactSection";
 import Footer from "../component/Footer";
 import Skills from "@/component/section/Skills";
 import ScrollToTop from "../component/ScrollTop";
+import BackgroundAnimation from "../component/BackgroundAnimation";
 
 export default function Page() {
   return (
     <SplashScreen>
-      <Navbar />  
+      <Navbar />
       <HeroSection />
-      
+      <BackgroundAnimation>
         <AboutSection />
         <ExperienceSection />
         <Skills />
         <ProjectSection />
         <ContactSection />
         <Footer />
-        <ScrollToTop/>
-      
+        <ScrollToTop />
+      </BackgroundAnimation>
+
     </SplashScreen>
   );
 }

@@ -38,20 +38,18 @@ export default function SplashScreen({ children }: SplashScreenProps) {
       <AnimatePresence>
         {showSplash && (
           <motion.div
-            className="splash-container"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.05 }}
-            transition={{ duration: 1 }}
+             className="splash-container splash-3d"
           >
             {/* Hero image */}
             <div className="w-full max-w-md mb-4">
               <Image
-                src="/image/My-logo.avif"
+                src="/image/onyx.png"
                 alt="Futuristic gold ornate logo design for a 2025 tech company featuring sleek metallic curves with glowing edges on a dark cosmic background, symbolizing innovation and elegance"
                 width={500}
                 height={500}
                 className="sp-image"
+                loading="eager"
+                priority
               />
             </div>
 
