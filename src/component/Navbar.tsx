@@ -1,99 +1,72 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const handleNavClick = (id: string) => {
+    setMenuOpen(false);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <>
-      <header
-        className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}
-        role="banner"
-        aria-label="Primary Navigation"
-      >
-        
-        <nav className="navbar-container" role="navigation" aria-label="Main menu">
-          <Link href="/" className="navbar-logo" aria-label="Homepage">
-            <Image
-              src="/image/My-logo.avif"
-              alt="Onyx Logo"
-              width={48}
-              height={48}
-              priority
-              className="navbar-logo-img"
-            />
-            <span className="navbar-logo-text">ONYX</span>
-          </Link>
+      <nav id="navbar" className={scrolled ? "scrolled" : ""}>
+        <div className="logo">
+          Onyx<span>Tech</span>
+        </div>
 
-          <div className="navbar-spacer" />
-          <ul className="navbar-links" role="menubar">
-            {["About", "Projects", "Contact"].map((item) => (
-              <li key={item} role="none">
-                <a
-                  href={`#${item.toLowerCase()}`}
-                  className="navbar-link"
-                  role="menuitem"
-                  tabIndex={0}
-                >
-                  {item}
-                </a>
-              </li>
-            ))}
-          </ul>
+        {/* Desktop links */}
+        <ul className="nav-links">
+          <li><a href="#about" onClick={(e) => { e.preventDefault(); handleNavClick("about"); }}>About</a></li>
+          <li><a href="#projects" onClick={(e) => { e.preventDefault(); handleNavClick("projects"); }}>Projects</a></li>
+          <li><a href="#skills" onClick={(e) => { e.preventDefault(); handleNavClick("skills"); }}>Skills</a></li>
+          <li><a href="#contact" onClick={(e) => { e.preventDefault(); handleNavClick("contact"); }}>Contact</a></li>
+        </ul>
 
-          {/* Right controls: Mobile toggle only */}
-          <div className="navbar-controls">
-            <button
-              className="navbar-toggle"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-expanded={isOpen}
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-            >
-              {isOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
-          </div>
-        </nav>
+        <button
+          className="nav-cta desktop-cta"
+          onClick={() => handleNavClick("contact")}
+        >
+          Let's Talk
+        </button>
 
-        {/* Mobile Menu with Framer Motion */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              className="navbar-mobile"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.35, ease: "easeInOut" }}
-              role="menu"
-              aria-label="Mobile menu"
-            >
-              {["About", "Projects", "Contact"].map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  onClick={() => setIsOpen(false)}
-                  className="navbar-mobile-link"
-                  role="menuitem"
-                  tabIndex={0}
-                >
-                  {item}
-                </a>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </header>
+        {/* Mobile hamburger */}
+        <button
+          className={`hamburger ${menuOpen ? "open" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+      </nav>
+
+      {/* Mobile overlay menu */}
+      <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
+        <ul className="mobile-nav-links">
+          <li><a href="#about" onClick={(e) => { e.preventDefault(); handleNavClick("about"); }}>About</a></li>
+          <li><a href="#projects" onClick={(e) => { e.preventDefault(); handleNavClick("projects"); }}>Projects</a></li>
+          <li><a href="#skills" onClick={(e) => { e.preventDefault(); handleNavClick("skills"); }}>Skills</a></li>
+          <li><a href="#contact" onClick={(e) => { e.preventDefault(); handleNavClick("contact"); }}>Contact</a></li>
+        </ul>
+        <button
+          className="nav-cta mobile-cta"
+          onClick={() => handleNavClick("contact")}
+        >
+          Let's Talk
+        </button>
+      </div>
     </>
   );
 }

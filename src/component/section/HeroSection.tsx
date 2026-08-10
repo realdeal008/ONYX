@@ -1,8 +1,10 @@
 "use client";
 
+
 import MatrixRain3D from "@/component/MatrixRain";
 import TechIcons3D from "@/component/TechIcons3D";
 import Onyx3D from "@/component/Onyx3D";
+import Programmingcomputer from "@/component/Programmingcomputer";
 
 export default function HeroSection() {
   return (
@@ -10,6 +12,9 @@ export default function HeroSection() {
       {/* Background effects */}
       <div className="hero-bg">
         <MatrixRain3D />
+        <div className="matrix-svg-center">
+          <Programmingcomputer className="matrix-svg" />
+        </div>
         <TechIcons3D />
       </div>
 

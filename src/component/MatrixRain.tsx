@@ -13,11 +13,11 @@ export default function MatrixRain() {
 
   useEffect(() => {
     const canvas = canvasRef.current!;
-    const ctx = canvas.getContext("2d")!;
+    const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
     const isMobile = window.innerWidth < 768;
     const baseSize = isMobile ? 22 : 18;
-    const chars = "RUST FLUTTER TYPESCRIPT REACT NEXTJS ONYX TECH ";
+    const chars = "RUST FLUTTER TYPESCRIPT REACT NEXTJS ONYX TECH AI ENGINEER ALL AROUND THE WROLD RUST FLUTTER TYPESCRIPT REACT NEXTJS ONYX TECH AI ENGINEER ALL AROUND THE WROLD ";
 
     let width = 0;
     let height = 0;
@@ -42,9 +42,8 @@ export default function MatrixRain() {
     let raf = 0;
 
     const draw = () => {
-
-      // Soft cinematic fade
-      ctx.fillStyle = "rgba(3, 10, 18, 0.08)";
+      // Dark warm background to complement orange-pink SVG gradient
+      ctx.fillStyle = "#faf8f7";
       ctx.fillRect(0, 0, width, height);
 
       ctx.textAlign = "center";
@@ -57,11 +56,7 @@ export default function MatrixRain() {
         const y = drop.y;
 
         ctx.save();
-        ctx.setTransform(
-          scale, 0, 0, scale,
-          x + baseSize / 2,
-          y
-        );
+        ctx.setTransform(scale, 0, 0, scale, x + baseSize / 2, y);
 
         ctx.font = `${baseSize}px monospace`;
         ctx.fillStyle = `rgba(47,217,255,${0.3 + scale})`;
@@ -102,10 +97,5 @@ export default function MatrixRain() {
     };
   }, []);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className="matrix-3d"
-    />
-  );
+  return <canvas ref={canvasRef} className="matrix-3d" />;
 }

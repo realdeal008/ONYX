@@ -55,7 +55,7 @@ export default function SplashScreen({ children }: SplashScreenProps) {
 
             <div className="particles" id="particles"></div>
             {/* Logo + tagline */}
-            <h1 className="splash-logo">Welcome to ONYX</h1>
+            <h1 className="splash-logo">Welcome to ONYXTECH</h1>
             <p className="tagline">Innovating the Future, One Spark at a Time</p>
 
             {/* Particles */}
@@ -68,3 +68,8 @@ export default function SplashScreen({ children }: SplashScreenProps) {
     </>
   );
 }
+
+
+
+
+
