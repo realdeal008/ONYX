@@ -1,7 +1,7 @@
 "use client";
 
 import SplashScreen from "../component/SplashScreen";
-import Navbar from "../component/Navbar";
+import Nav from "../component/Nav";
 import HeroSection from "../component/section/HeroSection";
 import AboutSection from "../component/section/AboutSection";
 import ExperienceSection from "../component/section/ExperienceSection";
@@ -15,7 +15,7 @@ import BackgroundAnimation from "../component/BackgroundAnimation";
 export default function Page() {
   return (
     <SplashScreen>
-      <Navbar />
+      <Nav/>
       <HeroSection />
       <BackgroundAnimation>
         <AboutSection />

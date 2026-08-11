@@ -1,16 +1,8 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'storage.googleapis.com',
-        port: '',
-        pathname: '/**',
-      },
-    ],
-  },
-};
+  /* Your existing config options here */
+  cacheComponents: true, 
+}
 
-export default nextConfig;
+export default nextConfig

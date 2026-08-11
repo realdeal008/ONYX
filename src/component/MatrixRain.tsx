@@ -17,7 +17,7 @@ export default function MatrixRain() {
 
     const isMobile = window.innerWidth < 768;
     const baseSize = isMobile ? 22 : 18;
-    const chars = "RUST FLUTTER TYPESCRIPT REACT NEXTJS ONYX TECH AI ENGINEER ALL AROUND THE WROLD RUST FLUTTER TYPESCRIPT REACT NEXTJS ONYX TECH AI ENGINEER ALL AROUND THE WROLD ";
+    const chars = "RUST FLUTTER TYPESCRIPT REACT NEXTJS ONYX TECH AI ENGINEER";
 
     let width = 0;
     let height = 0;

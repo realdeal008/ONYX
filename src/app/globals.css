@@ -425,6 +425,7 @@ nav.scrolled { padding: 1rem 5%; background: rgba(15, 23, 42, 0.85); }
   }
 
   .nav-links li {
+    display: none;
     transform: none !important;
   }
 
@@ -1026,7 +1027,7 @@ body, html {
 /* ============================= */
 
 .tagline {
-  font-size: clamp(1rem, 3vw, 1.35rem);
+  font-size: clamp(0.50rem, 3vw, 1.35rem);
   margin-top: 1rem;
   letter-spacing: 0.04em;
   color: rgba(180, 235, 245, 0.85);
